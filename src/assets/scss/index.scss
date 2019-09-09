@@ -1,0 +1,43 @@
+@import './reset.scss';
+
+$theme-color: #244F8A;
+
+html, body{
+  width: 100%;
+  height: 100%;
+}
+
+//body{
+//  width: 100%;
+//  height: auto;
+//  min-height: 100%;
+//}
+
+.minWidth{
+  min-width: 1200px;
+}
+
+.no-data-tip{
+  color: #666;
+  font-size: 14px;
+}
+
+.flexRow{
+  display: flex;
+  flex-direction: row;
+}
+
+.flexCol{
+  display: flex;
+  flex-direction: column;
+}
+
+.flex_1{
+  flex: 1;
+}
+
+.ulReset{
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
