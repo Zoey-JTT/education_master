@@ -15,7 +15,7 @@ export default [
         },
         meta: {
           title: '首页',
-          isNavMenu: true,
+          isNavMenu: true
         }
       },
       {
