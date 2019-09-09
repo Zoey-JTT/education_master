@@ -248,6 +248,7 @@
             color: #333333;
             letter-spacing: 10px;
             position: relative;
+            cursor: pointer;
             & > i {
               font-size: 30px;
             }

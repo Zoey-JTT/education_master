@@ -1,5 +1,5 @@
 <template>
-  <div class="j-header">
+  <div class="j-header minWidth flexCol">
     <div class="j-header-center" :style="{height: isHome}">
       <img src="~@/assets/image/title.png" alt="">
     </div>
@@ -16,29 +16,29 @@
 
 <script>
   import menu from '@/router/modules/front'
-  
+
   export default {
     name: "j-header",
-    data () {
+    data() {
       return {
         isActiveInd: 0,
         menuList: menu[0].children
       }
     },
     computed: {
-      isHome () {
+      isHome() {
         if (this.$route.name === 'JXJY_F_index') return '410px'
         return '250px'
       }
     },
     methods: {
-      toPage (name, ind) {
+      toPage(name, ind) {
         this.$router.push({name: name})
       }
     },
     watch: {
       $route: {
-        handler (newRouter, oldRouter) {
+        handler(newRouter, oldRouter) {
           let ind = this.menuList.findIndex(item => {
             return item.name === newRouter.name
           })
@@ -58,16 +58,15 @@
   .j-header {
     width: 100%;
     text-align: center;
-    display: flex;
-    flex-direction: column;
     justify-content: space-between;
     &-center {
       width: 100%;
       height: 100%;
       background-image: url("~@/assets/image/bg.png");
-      background-position: top;
+      background-position: center;
       background-repeat: no-repeat;
-      img {
+      background-size: 100%;
+      img{
         margin-top: 90px;
       }
     }
@@ -97,5 +96,12 @@
         }
       }
     }
+  }
+  @media(min-width: 1920px){
+    .j-header-center {
+        background-image: url("~@/assets/image/bg@2x.png");
+        background-position: center;
+        background-size: cover;
+      }
   }
 </style>
