@@ -63,7 +63,7 @@
       width: 100%;
       height: 100%;
       background-image: url("~@/assets/image/bg.png");
-      background-position: center;
+      background-position: top;
       background-repeat: no-repeat;
       background-size: 100%;
       img{

@@ -1,7 +1,8 @@
 <template>
   <div class="j-list" :style="{width: width}" :class="{hasBgColor: !hasBgColor}">
     <div class="j-list-head">
-      <h4 class="j-list-head-title" @click="toDetailInfo('JXJY_F_'+name, null)">{{title}}</h4>
+      <h4 v-if="!hasBgColor" class="j-list-head-title" @click="toDetailInfo('JXJY_F_'+name, null)">{{title}}</h4>
+      <h4 v-else class="j-list-head-title">{{title}}</h4>
       <span v-if="hasBgColor && hasMore" class="j-list-head-more"
             @click="toDetailInfo('JXJY_F_'+name, null)">更多 <i class="icon el-icon-arrow-right"></i>
       </span>
@@ -80,6 +81,7 @@
       border-left: 4px solid $theme-color;
       padding: 0 10px;
       border-radius: 0;
+      cursor: pointer;
     }
     .j-list-cont {
       border: none;
@@ -118,7 +120,6 @@
         font-size: 16px;
         padding: 8px 28px;
         border-radius: 4px 4px 0px 0px;
-        cursor: pointer;
       }
       &-more {
         position: absolute;
