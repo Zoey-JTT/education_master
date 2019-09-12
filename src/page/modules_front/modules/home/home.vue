@@ -68,7 +68,7 @@
         <j-list title="帮助中心" :hasMore="false" class="marginRight20 help">
           <div class="flexRow help-list">
             <ul class="ulReset">
-              <li v-for="(item, ind) in menuHelp" :key="ind">
+              <li v-for="(item, ind) in menuHelp" :key="ind" @click="openWindow(item.path)">
                 <i class="iconfont" :class="item.icon" :style="item.style"></i>
                 <span>{{item.name}}</span>
               </li>
@@ -77,7 +77,7 @@
         </j-list>
         <j-list title="友情链接" :hasMore="false" class="link-list">
           <ul class="ulReset">
-            <li v-for="(item, ind) in menuLink" :key="ind">{{item.name}}</li>
+            <li v-for="(item, ind) in menuLink" :key="ind" @click="openWindow(item.path)">{{item.name}}</li>
           </ul>
         </j-list>
       </div>
@@ -107,10 +107,10 @@
         bannerLoading: false, // 轮播图-加载,
         loginPath: 'https://web.chinahrt.com/user/register_first?platformId=ZzI5',
         menuTop: [
-          {path: '', icon: 'icon-ruzhuchuangxinjidi', name: '基地管理'},
-          {path: 'http://nbxsgl.chinahrt.com', icon: 'icon-shijian', name: '学时查询'},
-          {path: 'http://nbzj.chinahrt.com', icon: 'icon-zaixianxuexi', name: '在线学习'},
-          {path: '', icon: 'icon-kaoshiok', name: '考试测试'}
+          {name: '基地管理', icon: 'icon-ruzhuchuangxinjidi', path: ''},
+          {name: '学时查询', icon: 'icon-shijian', path: 'http://nbxsgl.chinahrt.com'},
+          {name: '在线学习', icon: 'icon-zaixianxuexi', path: 'http://nbzj.chinahrt.com'},
+          {name: '考试测试', icon: 'icon-kaoshiok', path: ''}
         ],
         menuProcess: [
           {name: '注册登录', icon: 'icon-yonghu', style: ''},
@@ -120,23 +120,23 @@
           {name: '在线测试', icon: 'icon-shijian', style: 'fontSize: 50px'}
         ],
         menuHelp: [
-          {name: '操作指南', icon: 'icon-caozuozhinan', style: 'color: #28548F'},
-          {name: '学习指南', icon: 'icon-xuexi', style: 'color: #DFA1C0'},
-          {name: '常见问题', icon: 'icon-caozuozhinan1', style: 'color: #E4B0B1'},
-          {name: '网上调查', icon: 'icon-wangshangtiaocha', style: 'color: #8CC4E5'},
-          {name: '入学指南', icon: 'icon-zhinan', style: 'color: #A2CDC7'},
-          {name: '课程架构', icon: 'icon-jiagou', style: 'color: #E5B17D'},
-          {name: '课程学习', icon: 'icon-kecheng', style: 'color: #B994BC'},
-          {name: '意见征集', icon: 'icon-wangshangtiaocha1', style: 'color: #B8D39D'},
-          {name: '联系我们', icon: 'icon-lianxiwomen', style: 'color: #BCAC92'},
-          {name: '手机学习', icon: 'icon-shouji', style: 'color: #BEAE93'}
+          {name: '操作指南', icon: 'icon-caozuozhinan', style: 'color: #28548F', path: ''},
+          {name: '学习指南', icon: 'icon-xuexi', style: 'color: #DFA1C0', path: ''},
+          {name: '常见问题', icon: 'icon-caozuozhinan1', style: 'color: #E4B0B1', path: ''},
+          {name: '网上调查', icon: 'icon-wangshangtiaocha', style: 'color: #8CC4E5', path: ''},
+          {name: '入学指南', icon: 'icon-zhinan', style: 'color: #A2CDC7', path: ''},
+          {name: '课程架构', icon: 'icon-jiagou', style: 'color: #E5B17D', path: ''},
+          {name: '课程学习', icon: 'icon-kecheng', style: 'color: #B994BC', path: ''},
+          {name: '意见征集', icon: 'icon-wangshangtiaocha1', style: 'color: #B8D39D', path: ''},
+          {name: '联系我们', icon: 'icon-lianxiwomen', style: 'color: #BCAC92', path: ''},
+          {name: '手机学习', icon: 'icon-shouji', style: 'color: #BEAE93', path: ''}
         ],
         menuLink: [
-          {name: '宁波政府网', path: ''},
-          {name: '宁波市人力资源和社会保障局', path: ''},
-          {name: '宁波人才培训网', path: ''},
-          {name: '宁波职业培训网', path: ''},
-          {name: '宁波人才网', path: ''}
+          {name: '宁波政府网', path: 'http://www.ningbo.gov.cn/'},
+          {name: '宁波市人力资源和社会保障局', path: 'http://rsj.ningbo.gov.cn/'},
+          {name: '宁波人才培训网', path: 'http://www.rcpx.net/'},
+          {name: '宁波职业培训网', path: 'http://www.nbzypx.com/'},
+          {name: '宁波人才网', path: 'https://www.nbrc.com.cn/'}
         ]
       }
     },
