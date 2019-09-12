@@ -117,7 +117,7 @@
         display: inline-block;
         background-color: $theme-color;
         color: #ffffff;
-        font-size: 16px;
+        font-size: 15px;
         padding: 8px 28px;
         border-radius: 4px 4px 0px 0px;
       }
@@ -136,6 +136,7 @@
     }
     &-cont {
       height: calc(100% - 57px);
+      min-height: 225px;
       border: 1px solid #D1D1D1;
       margin-top: 1px;
       padding: 10px;

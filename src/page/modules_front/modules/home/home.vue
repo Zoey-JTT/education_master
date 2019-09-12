@@ -3,14 +3,13 @@
     <section class="flexRow menu">
       <div class="menu-left">
         <ul class="flexRow ulReset menu-left-list">
-          <li><i class="iconfont icon-ruzhuchuangxinjidi"></i>基地管理</li>
-          <li><i class="iconfont icon-shijian"></i>学时查询</li>
-          <li><i class="iconfont icon-zaixianxuexi"></i>在线学习</li>
-          <li><i class="iconfont icon-kaoshiok"></i>考试测试</li>
+          <li v-for="(item, ind) in menuTop" :key="ind" @click="openWindow(item.path)">
+            <i class="iconfont" :class="item.icon"></i>{{item.name}}
+          </li>
         </ul>
       </div>
       <div class="menu-right">
-        <el-button class="btn">登录/注册</el-button>
+        <el-button class="btn" @click="openWindow(loginPath)">登录/注册</el-button>
       </div>
     </section>
     
@@ -39,36 +38,17 @@
       </div>
       <div class="step-detail">
         <ul class="ulReset flexRow flex_1">
-          <li>
-            <i class="iconfont icon-yonghu"></i>
-            <p>注册登录</p>
-          </li>
-          <li>
-            <i class="iconfont icon-shu" style="font-size: 40px"></i>
-            <p>在线选课</p>
-          </li>
-          <li>
-            <i class="iconfont icon-zaixianxuexi"></i>
-            <p>在线学习</p>
-          </li>
-          <li>
-            <i class="iconfont icon-dayin" style="font-size: 45px"></i>
-            <p>证书打印</p>
-          </li>
-          <li>
-            <i class="iconfont icon-kaoshi" style="font-size: 40px"></i>
-            <p>在线测试</p>
-          </li>
-          <li>
-            <i class="iconfont icon-shijian" style="font-size: 50px"></i>
-            <p>学时查询</p>
+          <li v-for="(item, ind) in menuProcess" :key="ind">
+            <i class="iconfont" :class="item.icon" :style="item.style"></i>
+            <p>{{item.name}}</p>
           </li>
         </ul>
       </div>
     </section>
     
     <section class="flexRow flex_1">
-      <j-list title="政策法规" :options="policiesObj" name="policies" class="marginRight20" v-loading="policiesLoading"></j-list>
+      <j-list title="政策法规" :options="policiesObj" name="policies" class="marginRight20"
+              v-loading="policiesLoading"></j-list>
       <j-list title="公告通知" :options="noticeObj" name="notice" v-loading="noticeLoading"></j-list>
     </section>
     
@@ -80,64 +60,24 @@
     </section>
     
     <section class="flexRow flex_1">
-      <j-list title="活动风采" :options="activeObj" name="active" class="marginRight20" width="50%" v-loading="activeLoading"></j-list>
+      <div class="flex_1" style="margin-right: 20px;">
+        <j-list title="活动风采" :options="activeObj" name="active" class="marginRight20"
+                v-loading="activeLoading"></j-list>
+      </div>
       <div class="flexRow flex_1">
         <j-list title="帮助中心" :hasMore="false" class="marginRight20 help">
           <div class="flexRow help-list">
             <ul class="ulReset">
-              <li>
-                <i class="iconfont icon-caozuozhinan" style="color: #28548F"></i>
-                <span>操作指南</span>
-              </li>
-              <li>
-                <i class="iconfont icon-xuexi" style="color: #DFA1C0"></i>
-                <span>学习指南</span>
-              </li>
-              <li>
-                <i class="iconfont icon-caozuozhinan1" style="color: #E4B0B1"></i>
-                <span>常见问题</span>
-              </li>
-              <li>
-                <i class="iconfont icon-wangshangtiaocha" style="color: #8CC4E5"></i>
-                <span>网上调查</span>
-              </li>
-              <li>
-                <i class="iconfont icon-zhinan" style="color: #A2CDC7"></i>
-                <span>入学指南</span>
-              </li>
-              <li>
-                <i class="iconfont icon-jiagou" style="color: #E5B17D"></i>
-                <span>课程架构</span>
-              </li>
-            </ul>
-            <ul class="ulReset">
-              <li>
-                <i class="iconfont icon-kecheng" style="color: #B994BC"></i>
-                <span>课程学习</span>
-              </li>
-              <li>
-                <i class="iconfont icon-wangshangtiaocha1" style="color: #B8D39D"></i>
-                <span>意见征集</span>
-              </li>
-              <li>
-                <i class="iconfont icon-lianxiwomen" style="color: #BCAC92"></i>
-                <span>联系我们</span>
-              </li>
-              <li>
-                <i class="iconfont icon-shouji" style="color: #BEAE93"></i>
-                <span>手机学习</span>
+              <li v-for="(item, ind) in menuHelp" :key="ind">
+                <i class="iconfont" :class="item.icon" :style="item.style"></i>
+                <span>{{item.name}}</span>
               </li>
             </ul>
           </div>
         </j-list>
         <j-list title="友情链接" :hasMore="false" class="link-list">
           <ul class="ulReset">
-            <li><a href="###">浙江人事考试网</a></li>
-            <li><a href="###">国家专技人才知识更新工程</a></li>
-            <li><a href="###">宁波市人力资源和社会保障</a></li>
-            <li><a href="###">宁波人才培训网</a></li>
-            <li><a href="###">广州市政府系统培训中心网</a></li>
-            <li><a href="###">中国国家人事人才培训网</a></li>
+            <li v-for="(item, ind) in menuLink" :key="ind">{{item.name}}</li>
           </ul>
         </j-list>
       </div>
@@ -164,34 +104,67 @@
         policiesLoading: false, // 政策法规-加载
         noticeLoading: false, // 公告通知-加载
         activeLoading: false, // 活动风采-加载
-        bannerLoading: false, // 轮播图-加载
+        bannerLoading: false, // 轮播图-加载,
+        loginPath: 'https://web.chinahrt.com/user/register_first?platformId=ZzI5',
+        menuTop: [
+          {path: '', icon: 'icon-ruzhuchuangxinjidi', name: '基地管理'},
+          {path: 'http://nbxsgl.chinahrt.com', icon: 'icon-shijian', name: '学时查询'},
+          {path: 'http://nbzj.chinahrt.com', icon: 'icon-zaixianxuexi', name: '在线学习'},
+          {path: '', icon: 'icon-kaoshiok', name: '考试测试'}
+        ],
+        menuProcess: [
+          {name: '注册登录', icon: 'icon-yonghu', style: ''},
+          {name: '在线选课', icon: 'icon-shu', style: 'fontSize: 40px'},
+          {name: '在线学习', icon: 'icon-zaixianxuexi', style: ''},
+          {name: '证书打印', icon: 'icon-dayin', style: 'fontSize: 45px'},
+          {name: '在线测试', icon: 'icon-shijian', style: 'fontSize: 50px'}
+        ],
+        menuHelp: [
+          {name: '操作指南', icon: 'icon-caozuozhinan', style: 'color: #28548F'},
+          {name: '学习指南', icon: 'icon-xuexi', style: 'color: #DFA1C0'},
+          {name: '常见问题', icon: 'icon-caozuozhinan1', style: 'color: #E4B0B1'},
+          {name: '网上调查', icon: 'icon-wangshangtiaocha', style: 'color: #8CC4E5'},
+          {name: '入学指南', icon: 'icon-zhinan', style: 'color: #A2CDC7'},
+          {name: '课程架构', icon: 'icon-jiagou', style: 'color: #E5B17D'},
+          {name: '课程学习', icon: 'icon-kecheng', style: 'color: #B994BC'},
+          {name: '意见征集', icon: 'icon-wangshangtiaocha1', style: 'color: #B8D39D'},
+          {name: '联系我们', icon: 'icon-lianxiwomen', style: 'color: #BCAC92'},
+          {name: '手机学习', icon: 'icon-shouji', style: 'color: #BEAE93'}
+        ],
+        menuLink: [
+          {name: '宁波政府网', path: ''},
+          {name: '宁波市人力资源和社会保障局', path: ''},
+          {name: '宁波人才培训网', path: ''},
+          {name: '宁波职业培训网', path: ''},
+          {name: '宁波人才网', path: ''}
+        ]
       }
     },
     methods: {
       ...mapActions('front', ['getFrontList', 'getBannerList', 'getFrontListDetail']),
       // 获取轮播图
       getBannerInfo () {
-        this.bannerLoading=true
+        this.bannerLoading = true
         this.getBannerList().then(res => {
-          this.bannerLoading=false
+          this.bannerLoading = false
           this.bannerObj = res.list
         }).catch(err => {
-          this.bannerLoading=false
+          this.bannerLoading = false
           this.$message.error(err)
         })
       },
       // 获取新闻动态，政策法规，公告通知，活动风采
       getListInfo (type, obj, loading) {
-        this[loading]=true
+        this[loading] = true
         let qry = query.new()
         qry = query.toP(qry, 1, 10)
         this.getFrontList({type: type, param: qry}).then(res => {
-          this[loading]=false
+          this[loading] = false
           if (res) {
             this[obj] = res.data.list
           }
         }).catch(err => {
-          this[loading]=false
+          this[loading] = false
           this.$message.error(err)
         })
       },
@@ -202,10 +175,17 @@
         }).catch(err => {
           this.$message.error(err)
         })
+      },
+      openWindow (path) {
+        if (!path) {
+          this.$alert('该功能正在完善，敬请期待···')
+        } else {
+          window.open(path, '_blank')
+        }
       }
     },
-    watch:{
-      newsObj(){
+    watch: {
+      newsObj () {
         this.getCont()
       }
     },
@@ -366,6 +346,7 @@
     .img-list {
       border: 1px solid #D1D1D1;
       width: 100%;
+      min-height: 310px;
       .title {
         position: absolute;
         bottom: 0px;
@@ -387,9 +368,8 @@
       ul {
         padding: 0 10px;
         line-height: 30px;
-        a {
-          color: $theme-color;
-        }
+        color: $theme-color;
+        cursor: pointer;
       }
     }
     .help {
@@ -401,10 +381,13 @@
         ul {
           padding: 0 15px;
           li {
-            line-height: 35px;
+            width: 50%;
+            line-height: 42px;
             cursor: pointer;
+            float: left;
             i {
               font-size: 24px;
+              vertical-align: middle;
             }
           }
         }

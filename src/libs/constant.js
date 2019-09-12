@@ -1,6 +1,6 @@
 // 请求基本路径
 const isPro = Object.is(process.env.NODE_ENV, 'development')
-export const baseUrl = isPro && process.env.OPEN_PROXY ? '/proxyApi' : 'http://192.168.1.101'
+export const baseUrl = isPro && process.env.OPEN_PROXY ? '/proxyApi' : 'http://106.12.22.8'
 
 // 表单限制最大长度
 export const maxlen = {
