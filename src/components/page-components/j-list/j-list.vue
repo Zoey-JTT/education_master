@@ -12,7 +12,7 @@
         <div v-if="!hasBgColor">
           <h4 class="j-list-cont-detail-title" v-if="options[0]">{{options[0].title}}</h4>
           <div class="j-list-cont-detail">
-            <p v-if="cont">{{cont}}</p>
+            <p v-if="cont" v-html="cont"></p>
             <p v-else class="no-data-tip">暂无数据</p>
           </div>
         </div>
@@ -68,7 +68,6 @@
       toDetailInfo (name, id) {
         this.$router.push({name: name, params: {id: id}})
       },
-      
     }
   }
 </script>
@@ -92,11 +91,14 @@
         color: $theme-color;
         font-size: 24px;
         margin: 10px 0 20px 0;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
       }
-      &-detail {
+      &-detail /deep/ {
         text-indent: 2rem;
-        font-size: 14px;
-        color: #666666;
+        font-size: 14px!important;
+        color: #666666!important;
         line-height: 24px;
         padding-bottom: 15px;
         margin-bottom: 20px;
@@ -104,6 +106,10 @@
         p {
           max-height: 70px;
           overflow: hidden;
+        }
+        .MsoNormal /deep/ span{
+          font-size: 14px;
+          font-family: SourceHanSansCN-Normal!important;
         }
       }
     }
@@ -117,7 +123,7 @@
         display: inline-block;
         background-color: $theme-color;
         color: #ffffff;
-        font-size: 15px;
+        font-size: 15px!important;
         padding: 8px 28px;
         border-radius: 4px 4px 0px 0px;
       }
@@ -125,8 +131,8 @@
         position: absolute;
         right: 0;
         top: 10px;
-        font-size: 14px;
-        color: #999999;
+        font-size: 14px!important;
+        color: #999999!important;
         cursor: pointer;
         i {
           font-size: 14px;
@@ -142,7 +148,7 @@
       padding: 10px;
       .lists {
         padding: 0 20px;
-        font-size: 14px;
+        font-size: 14px!important;
         -webkit-box-sizing: border-box;
         -moz-box-sizing: border-box;
         box-sizing: border-box;
@@ -157,12 +163,12 @@
         }
         li {
           width: auto;
-          line-height: 28px;
-          font-size: 14px;
+          line-height: 35px;
+          font-size: 14px!important;
           position: relative;
           .item-title {
             width: auto;
-            color: #666666;
+            color: #666666!important;
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;

@@ -8,7 +8,7 @@
         <li v-if="!list.length">暂无数据</li>
       </ul>
       <div slot="pagination" class="pagination">
-        <el-pagination background layout="prev, pager, next" :total="total"
+        <el-pagination background layout="prev, pager, next" :total="total" :page-size="pageSize"
                        @current-change="currentChangeHandle"></el-pagination>
       </div>
     </j-list-detail>
@@ -28,6 +28,7 @@
         list: [], // 列表
         type: '', // 新闻动态，政策法规，公告通知等
         total: 0, // 总条数
+        pageSize: 5 //每页条数
       }
     },
     methods: {

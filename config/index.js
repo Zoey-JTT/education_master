@@ -15,6 +15,7 @@ module.exports = {
       '/proxyApi': {  //使用"/api"来代替"http://f.apiplus.c"
         // target: 'http://192.168.1.101', //源地址
         target: 'http://106.12.22.8', //源地址
+        // target: 'http://NBJN.rcpx.net', //源地址
         // target: 'http://192.168.19.16', //源地址
         changeOrigin: true, //改变源
         pathRewrite: {

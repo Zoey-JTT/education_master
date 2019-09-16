@@ -16,8 +16,9 @@
     <section class="flexRow flex_1">
       <div class="img-list marginRight20" v-loading="bannerLoading">
         <el-carousel v-if="bannerObj.length" :interval="5000" trigger="click" height="100%">
-          <el-carousel-item v-for="(item, ind) in bannerObj" :key="ind" v-if="ind<5">
-            <img :src="item.imgUrl" alt="" width="100%" height="100%">
+          <el-carousel-item v-for="(item, ind) in bannerObj" :key="ind" v-if="ind<3">
+            <img :src="item.imgUrl" alt="" width="100%" height="100%"
+                 @click="toDetailInfo('JXJY_F_news_detail', item.id)">
             <p class="title">{{item.title}}</p>
           </el-carousel-item>
         </el-carousel>
@@ -48,7 +49,7 @@
     
     <section class="flexRow flex_1">
       <j-list title="政策法规" :options="policiesObj" name="policies" class="marginRight20"
-              v-loading="policiesLoading"></j-list>
+              v-loading="policiesLoading" width="590px"></j-list>
       <j-list title="公告通知" :options="noticeObj" name="notice" v-loading="noticeLoading"></j-list>
     </section>
     
@@ -61,7 +62,7 @@
     
     <section class="flexRow flex_1">
       <div class="flex_1" style="margin-right: 20px;">
-        <j-list title="活动风采" :options="activeObj" name="active" class="marginRight20"
+        <j-list title="活动风采" :options="activeObj" name="active" width="590px"
                 v-loading="activeLoading"></j-list>
       </div>
       <div class="flexRow flex_1">
@@ -175,6 +176,10 @@
         }).catch(err => {
           this.$message.error(err)
         })
+      },
+      toDetailInfo (name, id) {
+        console.log(name, id)
+        this.$router.push({name: name, params: {id: id}})
       },
       openWindow (path) {
         if (!path) {
@@ -347,6 +352,7 @@
       border: 1px solid #D1D1D1;
       width: 100%;
       min-height: 310px;
+      cursor: pointer;
       .title {
         position: absolute;
         bottom: 0px;
@@ -401,7 +407,7 @@
     }
     /deep/ .el-carousel__indicators--horizontal {
       bottom: 0;
-      right: -6%;
+      right: -4%;
       left: auto;
     }
     /deep/ .el-carousel__button {
