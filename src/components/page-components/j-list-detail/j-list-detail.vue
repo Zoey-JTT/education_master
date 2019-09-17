@@ -60,7 +60,8 @@
       }
     }
     &-section {
-      width: 100%;
+      width: 0;
+      flex: 1;
       justify-content: space-between;
       &-cont {
         border-left: 1px solid #ddd;

@@ -1,9 +1,10 @@
 <template>
   <div>
-    <j-list-detail>
+    <j-list-detail class="detail">
       <ul slot="cont" class="ulReset" v-loading="loading">
         <li v-for="(item, ind) in list" :key="ind" @click="toDetailPage($route.name+'_detail', item.id)">
-          {{item.title}}
+          <p class="item-title">{{item.title}}</p>
+          <span class="item-time">{{item.crtTm}}</span>
         </li>
         <li v-if="!list.length">暂无数据</li>
       </ul>
@@ -43,6 +44,9 @@
         this.getFrontList({type: this.type, param: qry}).then(res => {
           this.loading = false
           if (res) {
+            res.data.list.forEach(item => {
+              item.crtTm = item.crtTm.slice(0, 10)
+            })
             this.list = res.data.list
             this.total = res.page.total
           }
@@ -91,4 +95,22 @@
 </script>
 
 <style lang="scss" scoped>
+  .detail{
+    li{
+      position: relative;
+    }
+    .item-title{
+      width: 80%;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+    .item-time {
+      color: #999999;
+      position: absolute;
+      right: 10px;
+      top: 22px;
+    }
+  }
+  
 </style>
