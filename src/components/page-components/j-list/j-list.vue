@@ -1,5 +1,5 @@
 <template>
-  <div class="j-list" :style="{width: width}" :class="{hasBgColor: !hasBgColor}">
+  <div class="j-list flexCol" :style="{width: width}" :class="{hasBgColor: !hasBgColor}">
     <div class="j-list-head">
       <h4 v-if="!hasBgColor" class="j-list-head-title" @click="toDetailInfo('JXJY_F_'+name, null)">{{title}}</h4>
       <h4 v-else class="j-list-head-title">{{title}}</h4>
@@ -18,7 +18,8 @@
         </div>
         <ul v-if="options.length" class="ulReset lists">
           <li v-for="(item, ind) of options" :key="ind" v-if="hasBgColor?ind<8:ind<6&&ind!=0">
-            <p class="item-title" @click="toDetailInfo('JXJY_F_'+name+'_detail', item.id)">{{item.title}}</p>
+            <p class="item-title" :title="item.title"
+               @click="toDetailInfo('JXJY_F_'+name+'_detail', item.id)">{{item.title}}</p>
             <!--<span class="item-time">{{item.time}}</span>-->
           </li>
         </ul>

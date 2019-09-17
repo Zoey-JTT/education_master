@@ -27,7 +27,7 @@
     },
     computed: {
       isHome() {
-        if (this.$route.name === 'JXJY_F_index') return '410px'
+        if (this.$route.name === 'JXJY_F_index') return '400px'
         return '250px'
       }
     },

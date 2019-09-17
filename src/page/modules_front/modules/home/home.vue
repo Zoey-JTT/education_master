@@ -14,18 +14,22 @@
     </section>
     
     <section class="flexRow flex_1">
-      <div class="img-list marginRight20" v-loading="bannerLoading">
-        <el-carousel v-if="bannerObj.length" :interval="5000" trigger="click" height="100%">
-          <el-carousel-item v-for="(item, ind) in bannerObj" :key="ind" v-if="ind<3">
-            <img :src="item.imgUrl" alt="" width="100%" height="100%"
-                 @click="toDetailInfo('JXJY_F_news_detail', item.id)">
-            <p class="title">{{item.title}}</p>
-          </el-carousel-item>
-        </el-carousel>
-        <p v-else class="no-data-tip">暂无数据</p>
+      <div class="marginRight20 list-parts" v-loading="bannerLoading">
+        <div class="img-list">
+          <el-carousel v-if="bannerObj.length" :interval="5000" trigger="click" height="100%">
+            <el-carousel-item v-for="(item, ind) in bannerObj" :key="ind" v-if="ind<3">
+              <img :src="item.imgUrl" alt="" width="100%" height="100%"
+                   @click="toDetailInfo('JXJY_F_news_detail', item.id)">
+              <p class="title">{{item.title}}</p>
+            </el-carousel-item>
+          </el-carousel>
+          <p v-else class="no-data-tip">暂无数据</p>
+        </div>
       </div>
-      <j-list title="新闻动态" :options="newsObj" name="news" :cont="newCont"
-              :hasBgColor="false" v-loading="newsLoading"></j-list>
+      <div class="list-parts">
+        <j-list title="新闻动态" :options="newsObj" name="news" :cont="newCont"
+                :hasBgColor="false" v-loading="newsLoading"></j-list>
+      </div>
     </section>
     
     <section class="step flexRow">
@@ -48,9 +52,13 @@
     </section>
     
     <section class="flexRow flex_1">
-      <j-list title="政策法规" :options="policiesObj" name="policies" class="marginRight20"
-              v-loading="policiesLoading" width="590px"></j-list>
-      <j-list title="公告通知" :options="noticeObj" name="notice" v-loading="noticeLoading"></j-list>
+      <div class="marginRight20 list-parts">
+        <j-list title="政策法规" :options="policiesObj" name="policies"
+                v-loading="policiesLoading"></j-list>
+      </div>
+      <div class="list-parts">
+        <j-list title="公告通知" :options="noticeObj" name="notice" v-loading="noticeLoading"></j-list>
+      </div>
     </section>
     
     <section class="flexRow flex_1" style="justify-content: space-between">
@@ -59,28 +67,34 @@
       <img src="~@/assets/image/pic-2.3.png" alt="">
       <img src="~@/assets/image/pic-2.4.png" alt="">
     </section>
-    
+  
     <section class="flexRow flex_1">
-      <div class="flex_1" style="margin-right: 20px;">
-        <j-list title="活动风采" :options="activeObj" name="active" width="590px"
+      <div class="marginRight20 list-parts">
+        <j-list title="活动风采" :options="activeObj" name="active"
                 v-loading="activeLoading"></j-list>
       </div>
-      <div class="flexRow flex_1">
-        <j-list title="帮助中心" :hasMore="false" class="marginRight20 help">
-          <div class="flexRow help-list">
+      <div class="list-parts">
+        <div class="list-parts">
+          <j-list title="帮助中心" :hasMore="false" class="marginRight20 help">
+            <div class="flexRow help-list">
+              <ul class="ulReset">
+                <li v-for="(item, ind) in menuHelp" :key="ind" :title="item.name"
+                    @click="openWindow(item.path)">
+                  <i class="iconfont" :class="item.icon" :style="item.style"></i>
+                  <span>{{item.name}}</span>
+                </li>
+              </ul>
+            </div>
+          </j-list>
+        </div>
+        <div class="list-parts">
+          <j-list title="友情链接" :hasMore="false" class="link-list list-parts">
             <ul class="ulReset">
-              <li v-for="(item, ind) in menuHelp" :key="ind" @click="openWindow(item.path)">
-                <i class="iconfont" :class="item.icon" :style="item.style"></i>
-                <span>{{item.name}}</span>
-              </li>
+              <li v-for="(item, ind) in menuLink" :key="ind" :title="item.name"
+                  @click="openWindow(item.path)">{{item.name}}</li>
             </ul>
-          </div>
-        </j-list>
-        <j-list title="友情链接" :hasMore="false" class="link-list">
-          <ul class="ulReset">
-            <li v-for="(item, ind) in menuLink" :key="ind" @click="openWindow(item.path)">{{item.name}}</li>
-          </ul>
-        </j-list>
+          </j-list>
+        </div>
       </div>
     </section>
   </div>
@@ -214,6 +228,11 @@
     section {
       width: 100%;
       margin-bottom: 30px;
+      .list-parts {
+        width: 0;
+        display: flex;
+        flex: 1;
+      }
     }
     .menu {
       width: 100%;
@@ -376,6 +395,11 @@
         line-height: 30px;
         color: $theme-color;
         cursor: pointer;
+        li{
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
       }
     }
     .help {
