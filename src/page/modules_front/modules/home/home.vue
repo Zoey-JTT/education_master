@@ -67,7 +67,7 @@
       <img src="~@/assets/image/pic-2.3.png" alt="">
       <img src="~@/assets/image/pic-2.4.png" alt="">
     </section>
-  
+    
     <section class="flexRow flex_1">
       <div class="marginRight20 list-parts">
         <j-list title="活动风采" :options="activeObj" name="active"
@@ -91,7 +91,8 @@
           <j-list title="友情链接" :hasMore="false" class="link-list list-parts">
             <ul class="ulReset">
               <li v-for="(item, ind) in menuLink" :key="ind" :title="item.name"
-                  @click="openWindow(item.path)">{{item.name}}</li>
+                  @click="openWindow(item.path)">{{item.name}}
+              </li>
             </ul>
           </j-list>
         </div>
@@ -129,10 +130,10 @@
         ],
         menuProcess: [
           {name: '注册登录', icon: 'icon-yonghu', style: ''},
-          {name: '在线选课', icon: 'icon-shu', style: 'fontSize: 40px'},
+          {name: '在线选课', icon: 'icon-shu', style: 'fontSize: 30px'},
           {name: '在线学习', icon: 'icon-zaixianxuexi', style: ''},
-          {name: '证书打印', icon: 'icon-dayin', style: 'fontSize: 45px'},
-          {name: '在线测试', icon: 'icon-shijian', style: 'fontSize: 50px'}
+          {name: '证书打印', icon: 'icon-dayin', style: 'fontSize: 35px'},
+          {name: '在线测试', icon: 'icon-shijian', style: 'fontSize: 35px'}
         ],
         menuHelp: [
           {name: '操作指南', icon: 'icon-caozuozhinan', style: 'color: #28548F', path: ''},
@@ -176,6 +177,9 @@
         this.getFrontList({type: type, param: qry}).then(res => {
           this[loading] = false
           if (res) {
+            res.data.list.forEach(item => {
+              item.crtTm = item.crtTm.slice(0, 10)
+            })
             this[obj] = res.data.list
           }
         }).catch(err => {
@@ -192,7 +196,6 @@
         })
       },
       toDetailInfo (name, id) {
-        console.log(name, id)
         this.$router.push({name: name, params: {id: id}})
       },
       openWindow (path) {
@@ -227,7 +230,7 @@
   .home {
     section {
       width: 100%;
-      margin-bottom: 30px;
+      margin-bottom: 15px;
       .list-parts {
         width: 0;
         display: flex;
@@ -236,7 +239,7 @@
     }
     .menu {
       width: 100%;
-      height: 90px;
+      height: 50px;
       &-left {
         width: 80%;
         height: 100%;
@@ -247,28 +250,30 @@
           li {
             width: 25%;
             text-align: center;
-            line-height: 90px;
-            font-size: 30px;
+            line-height: 50px;
+            font-size: 18px;
             color: #333333;
-            letter-spacing: 10px;
+            letter-spacing: 2px;
             position: relative;
             cursor: pointer;
             & > i {
-              font-size: 30px;
+              font-size: 20px;
+              margin-right: 5px;
+              position: relative;
             }
             .icon-ruzhuchuangxinjidi {
               color: #8C59FF;
-              font-size: 40px;
-              position: relative;
+              font-size: 30px;
               top: 4px;
             }
             .icon-shijian {
               color: #4FD3F9;
-              font-size: 30px
+              font-size: 25px;
+              top: 2px;
             }
             .icon-zaixianxuexi {
               color: #35CCC4;
-              font-size: 25px
+              top: 2px;
             }
             .icon-kaoshiok {
               color: #FB8261;
@@ -293,14 +298,15 @@
           width: 100%;
           height: 100%;
           color: #fff;
-          font-size: 30px;
+          letter-spacing: 5px;
+          font-size: 18px;
           border-radius: 4px;
           background-color: $theme-color;
         }
       }
     }
     .step {
-      height: 160px;
+      height: 120px;
       background-color: #4A7CCD;
       &-title {
         width: 190px;
@@ -308,7 +314,7 @@
         position: relative;
         img {
           position: absolute;
-          top: 0;
+          top: calc(-50% + 40px);
           left: 0;
         }
         &-text {
@@ -340,11 +346,11 @@
             position: relative;
             i {
               border: 2px solid #fff;
-              width: 94px;
-              height: 94px;
+              width: 60px;
+              height: 60px;
               border-radius: 50%;
-              line-height: 94px;
-              font-size: 35px;
+              line-height: 60px;
+              font-size: 25px;
               margin: 0 auto;
               background: rgba(110, 150, 215, 1);
               -webkit-box-sizing: border-box;
@@ -395,7 +401,7 @@
         line-height: 30px;
         color: $theme-color;
         cursor: pointer;
-        li{
+        li {
           white-space: nowrap;
           overflow: hidden;
           text-overflow: ellipsis;

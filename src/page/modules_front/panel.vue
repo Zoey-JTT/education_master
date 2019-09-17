@@ -45,6 +45,6 @@
   .container {
     width: 1200px;
     margin: 0 auto;
-    padding: 30px 0;
+    padding: 15px 0;
   }
 </style>

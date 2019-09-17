@@ -9,7 +9,7 @@
       </ul>
       <div slot="pagination" class="pagination">
         <el-pagination background layout="prev, pager, next" :total="total" :page-size="pageSize"
-                       @current-change="currentChangeHandle"></el-pagination>
+                       :current-page="currentPage" @current-change="currentChangeHandle"></el-pagination>
       </div>
     </j-list-detail>
   </div>
@@ -28,6 +28,7 @@
         list: [], // 列表
         type: '', // 新闻动态，政策法规，公告通知等
         total: 0, // 总条数
+        currentPage: 1, // 当前页
         pageSize: 5 //每页条数
       }
     },
@@ -52,6 +53,7 @@
       },
       // 分页
       currentChangeHandle (val) {
+        this.currentPage = val
         this.getListInfo(val)
       },
       // 跳至详情页
@@ -78,7 +80,8 @@
               break
             default:
           }
-          this.getListInfo(1)
+          this.currentPage = 1
+          this.getListInfo(this.currentPage)
         },
         immediate: true
       }

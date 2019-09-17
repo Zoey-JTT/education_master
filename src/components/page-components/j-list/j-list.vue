@@ -10,7 +10,8 @@
     <div class="j-list-cont">
       <slot>
         <div v-if="!hasBgColor">
-          <h4 class="j-list-cont-detail-title" v-if="options[0]">{{options[0].title}}</h4>
+          <h4 class="j-list-cont-detail-title" v-if="options[0]"
+          @click="toDetailInfo('JXJY_F_news_detail', options[0].id)">{{options[0].title}}</h4>
           <div class="j-list-cont-detail">
             <p v-if="cont" v-html="cont"></p>
             <p v-else class="no-data-tip">暂无数据</p>
@@ -20,7 +21,7 @@
           <li v-for="(item, ind) of options" :key="ind" v-if="hasBgColor?ind<8:ind<6&&ind!=0">
             <p class="item-title" :title="item.title"
                @click="toDetailInfo('JXJY_F_'+name+'_detail', item.id)">{{item.title}}</p>
-            <!--<span class="item-time">{{item.time}}</span>-->
+            <span class="item-time" v-if="hasBgColor">{{item.crtTm}}</span>
           </li>
         </ul>
         <p v-else class="no-data-tip">暂无数据</p>
@@ -95,6 +96,7 @@
         white-space: nowrap;
         text-overflow: ellipsis;
         overflow: hidden;
+        cursor: pointer;
       }
       &-detail /deep/ {
         text-indent: 2rem;
@@ -168,7 +170,7 @@
           font-size: 14px!important;
           position: relative;
           .item-title {
-            width: auto;
+            width: 80%;
             color: #666666!important;
             white-space: nowrap;
             overflow: hidden;
